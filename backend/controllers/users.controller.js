@@ -36,7 +36,7 @@ exports.getUserById = async function (req, res) {
 
 exports.createUser = async function (req, res) {
     try {
-        var newUser = await UserService.createUser(req.body, res);
+        var newUser = await UserService.createUser(req.body);
 
         return res.status(201).json({ success: true, data: newUser });
     } catch (error) {

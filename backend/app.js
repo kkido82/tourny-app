@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require("mongoose");
 
 var api = require('./routes/api.routes');
 var app = express();
@@ -37,9 +38,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
 });
 
-mongoose.connect("mongodb://127.0.0.1:27017/mean", { useNewUrlParser: true })
-	.then(() =>  { console.log("connected successfuly to mongodb - mean"); })
+mongoose.connect("mongodb://127.0.0.1:27017/tourny-app", { useNewUrlParser: true })
+	.then(() =>  { console.log("connected successfuly to mongodb - tourny-app"); })
   
-	.catch((err) => { console.log("error connecting to mongodb - mean error: " + err); });
+	.catch((err) => { console.log("error connecting to mongodb - tourny-app error: " + err); });
 
 module.exports = app;

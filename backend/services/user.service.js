@@ -29,6 +29,8 @@ exports.createUser = async function (user) {
     const newUser = new User({
         firstName: user.firstName,
         lastName: user.lastName,
+        userName: user.userName,
+        password: user.password,
         email: user.email,
         rank: user.rank,
         rightHanded: user.rightHanded,
