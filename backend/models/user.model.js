@@ -17,7 +17,7 @@ var UserSchema = new mongoose.Schema({
             message: props => `${props.value} is not a valid email!`
         }
     },
-    rank: { type: Number },
+    ranking: { type: Number },
     rightHanded: { type: Boolean },
     status: { type: String, default: 'active' },
     isAdmin: { type: Boolean, default: false }

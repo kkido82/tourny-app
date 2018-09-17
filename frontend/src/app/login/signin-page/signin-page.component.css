@@ -1,4 +1,4 @@
-.login-form-wrapper {
+.signin-form-wrapper {
 	margin-top: 80px;
 	margin-bottom: 80px;
 }
@@ -13,6 +13,7 @@
 /* Bordered form */
 
 .signin-form {
+	text-align: right;
 	direction: rtl;
 	max-width: 480px;
 	padding: 15px 35px 45px;
@@ -78,11 +79,11 @@ span.psw {
 	padding-top: 16px;
 }
 
-.login-input-error {
+.signin-input-error {
 	border-color: red !important;
 }
 
-.login-input-error-text {
+.signin-input-error-text {
 	color: red;
 	padding-right: 5px;
 	margin-top: -10px;

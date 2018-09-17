@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  selector: 'app-signin-page',
+  templateUrl: './signin-page.component.html',
+  styleUrls: ['./signin-page.component.css']
 })
-export class LoginPageComponent implements OnInit {
-  loginForm: FormGroup;
+export class SigninPageComponent implements OnInit {
+  signinForm: FormGroup;
   usernameValid: boolean = true;
   passwordValid: boolean = true;
 
   constructor(formBuilder: FormBuilder) {
-    this.loginForm = formBuilder.group({
+    this.signinForm = formBuilder.group({
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
@@ -31,14 +31,14 @@ export class LoginPageComponent implements OnInit {
   }
 
   submit() {
-    const username = this.loginForm.get('username');
-    const password = this.loginForm.get('password');
+    const username = this.signinForm.get('username');
+    const password = this.signinForm.get('password');
 
     this.usernameValid = username.valid && (username.dirty || username.touched);
     this.passwordValid = password.valid && (password.dirty || password.touched);
 
-    if (this.loginForm.valid) {
-      alert('this.loginForm.valid');
+    if (this.signinForm.valid) {
+      alert('this.signinForm.valid');
     }
     else {
       

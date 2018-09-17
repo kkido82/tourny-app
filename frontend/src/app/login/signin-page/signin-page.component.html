@@ -1,20 +1,19 @@
-<div class="login-form-wrapper">
-  <form class="signin-form" [formGroup]="loginForm">
+<div class="signin-form-wrapper">
+  <form class="signin-form" [formGroup]="signinForm">
     <div>
       <h1 class="half-title">כניסה למערכת</h1>
     </div>
     <div class="container">
       <label for="uname"><b>שם משתמש</b></label>
       <input type="text" (keyup)="clearValidations('username');" formControlName="username" placeholder="הקלד שם משתמש"
-        name="uname" [class.login-input-error]="!usernameValid" />
-      <div *ngIf="!usernameValid" class="login-input-error-text">
+        name="uname" [class.signin-input-error]="!usernameValid" />
+      <div *ngIf="!usernameValid" class="signin-input-error-text">
         יש להזין שם משתמש
       </div>
-
       <label for="psw"><b>סיסמא</b></label>
       <input type="password" (keyup)="clearValidations('password');" formControlName="password" placeholder="הקלד סיסמא"
-        name="psw" [class.login-input-error]="!passwordValid" />
-      <div *ngIf="!passwordValid" class="login-input-error-text">
+        name="psw" [class.signin-input-error]="!passwordValid" />
+      <div *ngIf="!passwordValid" class="signin-input-error-text">
         חובה להזין סיסמא בת 8 תווים
       </div>
 
@@ -28,10 +27,10 @@
 
     <div class="container" style="display: inline-block; padding: 0;">
       <div>
-        <span class="psw">שכחתם את הסיסמא? <a href="#">לחצו כאן</a></span>
+        <span class="psw">שכחתם את הסיסמא? <a [routerLink]="'forgotPassword'">לחצו כאן</a></span>
       </div>
       <div>
-        <span class="psw">עדיין לא רשומים? <a href="#">לחצו כאן</a></span>
+        <span class="psw">עדיין לא רשומים? <a [routerLink]="'signup'">לחצו כאן</a></span>
       </div>
     </div>
   </form>
