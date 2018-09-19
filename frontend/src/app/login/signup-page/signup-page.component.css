@@ -1,9 +1,13 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box}
 
-.signup-form-wrapper{
+.step-content-wrapper{
     text-align: right;
     direction: rtl;
+    min-height: 580px;
+    max-height: 580px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .signup-form-wrapper ul {
@@ -11,27 +15,13 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 
 .signup-form {
-	direction: rtl;
-	/* max-width: 480px; */
-	/* padding: 15px 35px 45px; */
+    direction: rtl;
 	margin: 0 auto;
-	background-color: #fff;
-	border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* Full-width input fields */
 input[type=text], input[type=password] {
-    width: 100%;
     padding: 15px;
-    margin: 5px 0 22px 0;
-    display: inline-block;
-    border: none;
-    background: #f1f1f1;
-}
-
-input[type=text]:focus, input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
+    margin: 5px 0 10px 0;
 }
 
 hr {
@@ -51,22 +41,6 @@ button {
     opacity: 0.9;
 }
 
-button:hover {
-    opacity:1;
-}
-
-/* Extra styles for the cancel button */
-.cancelbtn {
-    padding: 14px 20px;
-    background-color: #f44336;
-}
-
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: left;
-  width: 50%;
-}
-
 /* Add padding to container elements */
 .container {
     padding: 16px;
@@ -84,4 +58,9 @@ button:hover {
     .cancelbtn, .signupbtn {
        width: 100%;
     }
+}
+
+.step-btn {
+    border-radius: 4px;
+    width: 20%;
 }

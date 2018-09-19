@@ -6,14 +6,14 @@
     <div class="container">
       <label for="uname"><b>שם משתמש</b></label>
       <input type="text" (keyup)="clearValidations('username');" formControlName="username" placeholder="הקלד שם משתמש"
-        name="uname" [class.signin-input-error]="!usernameValid" />
-      <div *ngIf="!usernameValid" class="signin-input-error-text">
+        name="uname" [class.input-error]="!usernameValid" />
+      <div *ngIf="!usernameValid" class="input-error-text">
         יש להזין שם משתמש
       </div>
       <label for="psw"><b>סיסמא</b></label>
       <input type="password" (keyup)="clearValidations('password');" formControlName="password" placeholder="הקלד סיסמא"
-        name="psw" [class.signin-input-error]="!passwordValid" />
-      <div *ngIf="!passwordValid" class="signin-input-error-text">
+        name="psw" [class.input-error]="!passwordValid" />
+      <div *ngIf="!passwordValid" class="input-error-text">
         חובה להזין סיסמא בת 8 תווים
       </div>
 

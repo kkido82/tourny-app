@@ -4,13 +4,15 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SigninPageComponent } from './signin-page/signin-page.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
 import { RouterModule } from '@angular/router';
+import { ArchwizardModule } from 'angular-archwizard';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ArchwizardModule
   ],
   declarations: [SigninPageComponent, SignupPageComponent],
   exports: [SigninPageComponent]

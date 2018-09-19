@@ -2,3 +2,46 @@
 body {
 	background: #eee !important;	
 }
+
+button:disabled, button:disabled:hover {
+    background: #a7a2a2 !important;
+    cursor: default !important;
+}
+
+/* Add a hover effect for buttons */
+
+button:not([disabled]):hover {
+	opacity: 0.8 !important;
+}
+
+/* Errors styling section */
+
+.input-error {
+	border-color: red !important;
+}
+
+.input-error-text {
+	color: red;
+	padding-right: 5px;
+	margin-top: -10px;
+}
+
+
+
+
+/* Full-width inputs */
+
+input[type=text], input[type=password] {
+	width: 100%;
+	
+	
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	border-radius: 4px;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}

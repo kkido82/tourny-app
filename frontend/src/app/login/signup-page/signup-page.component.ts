@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from '../../models/user.model';
+import comparePassword from "../../validators/compare-password.validator";
 
 @Component({
   selector: 'app-signup-page',
@@ -10,17 +11,28 @@ import { User } from '../../models/user.model';
 export class SignupPageComponent implements OnInit {
   signupForm: FormGroup;
   newUser: User = new User();
-  
-  constructor() { }
+
+  constructor(formBuilder: FormBuilder) {
+    this.signupForm = formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(1)]],
+      confirmPassword: ['']
+    }, { validator: comparePassword });
+  }
 
   ngOnInit() {
   }
 
-  onStep1Next($event){
-
+  step1Complete(){
+    debugger
+    return this.signupForm.valid;
   }
 
-  onStep2Next($event){}
-  onStep3Next($event){}
-  onStep4Next($event){}
+  register(){
+    alert()
+  }
+
+
+
+  
 }

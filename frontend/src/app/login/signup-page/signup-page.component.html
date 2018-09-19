@@ -1,4 +1,4 @@
-<div class="signup-form-wrapper">
+<!-- <div class="signup-form-wrapper">
     <form class="signup-form" [formGroup]="signupForm">
       <div class="container">
         <h1>הרשמה למערכת</h1>
@@ -27,4 +27,96 @@
       </div>
     </form>
   </div>
-  
+   -->
+
+<aw-wizard navBarDirection="right-to-left">
+  <aw-wizard-step stepTitle="פרטי התחברות" [canExit]="step1Complete()">
+    <div class="step-content-wrapper">
+      <form class="signup-form" [formGroup]="signupForm">
+        <div class="container">
+          <h1>פרטי התחברות</h1>
+          <p>חובה למלא את כל הפרטים כדי לעבור לשלב הבא</p>
+          <hr>
+
+          <label for="uname"><b>שם משתמש</b></label>
+          <input type="text" formControlName="username" placeholder="בחר שם משתמש" name="uname" [class.input-error]="signupForm.get('username').invalid && signupForm.get('username').touched" />
+          <div *ngIf="signupForm.get('username').invalid && signupForm.get('username').touched" class="input-error-text">
+            חובה לבחור שם משתמש
+          </div>
+          <label for="psw"><b>סיסמא</b></label>
+          <input type="password" formControlName="password" placeholder="בחר סיסמא" name="psw" [class.input-error]="signupForm.get('password').invalid && signupForm.get('password').touched" />
+          <div *ngIf="signupForm.get('password').invalid && signupForm.get('password').touched" class="input-error-text">
+            חובה להזין סיסמא באורך 8 תווים לפחות
+          </div>
+
+
+          <label for="psw-repeat"><b>הקלד סיסמא שוב</b></label>
+          <input type="password" formControlName="confirmPassword" placeholder="הקלד סיסמא שוב" name="psw-repeat"
+            [class.input-error]="signupForm.hasError('notSame') && signupForm.get('confirmPassword').touched" />
+          <div *ngIf="signupForm.hasError('notSame') && signupForm.get('confirmPassword').touched" class="input-error-text">
+            סיסמא לא תואמת
+          </div>
+          <!-- <label>
+              <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+            </label> -->
+
+          <!-- <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p> -->
+
+          <!-- <div class="clearfix">
+              <button type="button" class="cancelbtn">Cancel</button>
+              <button type="submit" class="signupbtn">Sign Up</button>
+            </div> -->
+        </div>
+      </form>
+    </div>
+    <div class="step-btns-container">
+      <button type="button" class="step-btn" (click)="step1Complete();" [disabled]="signupForm.invalid" awNextStep><i
+          class="fa fa-arrow-left"></i> הבא </button>
+    </div>
+  </aw-wizard-step>
+  <aw-wizard-step stepTitle="פרטים אישיים" awOptionalStep>
+    <div class="step-content-wrapper">
+      <div class="container">
+        <h1>פרטים אישיים</h1>
+        <!-- <p>חובה למלא את כל הפרטים כדי לעבור לשלב הבא</p> -->
+        <hr>
+      </div>
+    </div>
+    <div class="step-btns-container">
+      <button type="button" class="step-btn float-right" awPreviousStep>הקודם <i class="fa fa-arrow-right"></i></button>
+      <button type="button" class="step-btn" awNextStep><i class="fa fa-arrow-left"></i> הבא </button>
+    </div>
+  </aw-wizard-step>
+  <aw-wizard-step stepTitle="אישור והרשמה">
+    <div class="step-content-wrapper">
+      <div class="container">
+        <h1>אישור והרשמה</h1>
+        <p>נא לבדוק את נכונות הפרטים וללחוץ על כפתור הרשמה</p>
+        <hr>
+      </div>
+    </div>
+    <div class="step-btns-container" stepTitle="סיום">
+      <button type="button" class="step-btn float-right" awPreviousStep>הקודם <i class="fa fa-arrow-right"></i></button>
+      <button type="button" class="step-btn" (click)="register()" awNextStep><i class="fa fa-check" aria-hidden="true"></i> אישור 
+        והרשמה
+      </button>
+    </div>
+  </aw-wizard-step>
+  <aw-wizard-completion-step>
+    <div class="step-content-wrapper">
+      <div class="container">
+        <h1>אישור והרשמה</h1>
+        <p>נא לבדוק את נכונות הפרטים וללחוץ על כפתור הרשמה</p>
+        <hr>
+        <div class="container" style="display: inline-block; padding: 0;">
+          <div>
+            <a class="btn" [routerLink]="'forgotPassword'">לחצו כאן</a>
+          </div>
+          <div>
+            <span class="psw">עדיין לא רשומים? <a [routerLink]="'signup'">לחצו כאן</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aw-wizard-completion-step>
+</aw-wizard>
