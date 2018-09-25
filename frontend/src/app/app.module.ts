@@ -6,6 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login/login.module';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { MessageComponent } from './components/message/message.component';
+import { StoreModule } from './store';
+
+
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import { MessageComponent } from './components/message/message.component';
     BrowserModule,
     AngularFontAwesomeModule,
     AppRoutingModule,
-    LoginModule
+    LoginModule,
+    StoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,4 +3,9 @@
 <div class="container">
     <!-- <alert></alert> -->
     <router-outlet></router-outlet>
+    <div>
+        Count: {{ count }}
+        <button (click)="increment()">+</button>
+        <button (click)="decrement()">-</button>
+      </div>
 </div>
