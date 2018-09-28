@@ -1,24 +1,24 @@
-import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store'; // <- New
-import { IAppState } from './state.model';
+import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
+import { IAppState } from './models';
 import { NgModule } from '@angular/core';
-import * as loginReducers from './modules/login';
-import * as loginModles from './modules/login/models'
+import * as login from './modules/login';
+import * as global from './modules/global';
 import { combineReducers } from 'redux';
-import { CounterActions } from './modules/login/actions';
 
-const INITIAL_STATE: IAppState = {
-    login: loginModles.initState
+const initState: IAppState = {
+    global: global.initState,
+    login: login.initState
 };
 
 const rootReducer = combineReducers<IAppState>({
-    login: loginReducers.counter
+    global: global.reducer,
+    login: login.reducer
 });
 
 @NgModule({
     imports: [
         NgReduxModule
-    ],
-    providers: [CounterActions] // <- New
+    ]
 })
 export class StoreModule {
     constructor(ngRedux: NgRedux<IAppState>, devTools: DevToolsExtension) {
@@ -31,6 +31,6 @@ export class StoreModule {
         // events.
         ngRedux.configureStore(
             rootReducer,
-            INITIAL_STATE, null, enhancers);
+            initState, null, enhancers);
     }
 }

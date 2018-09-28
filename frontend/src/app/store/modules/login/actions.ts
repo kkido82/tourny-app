@@ -1,16 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Action } from 'redux';
+import { Action } from '../../models';
 
-@Injectable()
-export class CounterActions {
-  static INCREMENT = 'INCREMENT';
-  static DECREMENT = 'DECREMENT';
+export const types = {
+    INCREMENT: 'INCREMENT',
+    DECREMENT: 'DECREMENT'
+}
 
-  increment(): Action {
-    return { type: CounterActions.INCREMENT };
-  }
+export const increment = (amount: number = 1): Action => {
+    return { type: types.INCREMENT, payload: { amount }, loading: true };
+}
 
-  decrement(): Action {
-    return { type: CounterActions.DECREMENT };
-  }
+export const decrement = (amount: number = 1): Action => {
+    return { type: types.DECREMENT, payload: { amount }, loading: true };
 }

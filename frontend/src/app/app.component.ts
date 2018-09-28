@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
-import { NgRedux } from '@angular-redux/store'; // <- New
-import { CounterActions } from './store/modules/login/actions'; // <- New
-import { IAppState } from "./store/state.model"; // <- New
+import { NgRedux, select } from '@angular-redux/store';
+import { increment, decrement } from './store/modules/login/actions';
+import { Observable } from 'rxjs';
+import { IAppState } from './store/models';
 
 @Component({
   selector: 'app-root',
@@ -11,21 +12,16 @@ import { IAppState } from "./store/state.model"; // <- New
 })
 export class AppComponent {
   title = 'app';
-  count: number; // <- New
-  subscription; // <- New;
+  @select(['login', 'count']) readonly count$: Observable<number>;
 
-  constructor(                           // <- New
-    private ngRedux: NgRedux<IAppState>, // <- New
-    private actions: CounterActions) {
-      this.subscription = ngRedux.select<number>(['login', 'count'])
-      .subscribe(newCount => this.count = newCount )
-    }  // <- New
+  constructor(
+    private ngRedux: NgRedux<IAppState>) { }
 
-  increment() {
-    this.ngRedux.dispatch(this.actions.increment()); // <- New
+  increment(amount) {
+    this.ngRedux.dispatch(increment(amount));
   }
 
-  decrement() {
-    this.ngRedux.dispatch(this.actions.decrement()); // <- New
+  decrement(amount) {
+    this.ngRedux.dispatch(decrement(amount));
   }
 }
