@@ -4,8 +4,8 @@ export const initState: IState = {
     loading: false
 };
 
-export const reducer = (state = initState, action) => {
-    if(action.loading) {
+export const reducers = (state: IState = initState, action): IState => {
+    if (action.loading) {
         return {
             ...state,
             loading: true

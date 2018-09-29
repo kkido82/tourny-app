@@ -1,7 +1,12 @@
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-.step-content-wrapper{
+* {
+    box-sizing: border-box
+}
+
+.step-content-wrapper {
     text-align: right;
     direction: rtl;
     min-height: 580px;
@@ -16,7 +21,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 .signup-form {
     direction: rtl;
-	margin: 0 auto;
+    margin: 0 auto;
 }
 
 input[type=text], input[type=password] {
@@ -30,6 +35,7 @@ hr {
 }
 
 /* Set a style for all buttons */
+
 button {
     background-color: #4CAF50;
     color: white;
@@ -42,11 +48,13 @@ button {
 }
 
 /* Add padding to container elements */
+
 .container {
     padding: 16px;
 }
 
 /* Clear floats */
+
 .clearfix::after {
     content: "";
     clear: both;
@@ -54,13 +62,31 @@ button {
 }
 
 /* Change styles for cancel button and signup button on extra small screens */
+
 @media screen and (max-width: 300px) {
     .cancelbtn, .signupbtn {
-       width: 100%;
+        width: 100%;
     }
 }
 
 .step-btn {
     border-radius: 4px;
     width: 20%;
+}
+
+.details-summary {
+    display: -webkit-box;
+}
+
+.field-icon {
+    margin-right: 10px;
+}
+
+.psw-summary-container {
+    display: flex;
+    align-items: center;
+}
+
+.psw-summary-input {
+    border: none;
 }

@@ -1,9 +1,7 @@
 import { AbstractControl } from '@angular/forms';
 
-export function ValidateUrl(control: AbstractControl) {
-  //TODO add regex finish the email validation
-  if (!control.value.startsWith('https') || !control.value.includes('.io')) {
-    return { validUrl: true };
-  }
-  return null;
+export default (control: AbstractControl) => {
+  const re = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+  return re.test(String(control.value).toLowerCase()) ? null : { notEmail: true };
 }

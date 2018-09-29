@@ -6,8 +6,8 @@ export interface IAppState {
     login: loginModels.IState;
 }
 
-export interface Action {
+export interface Action<T> {
     type: string;
-    payload?: any;
+    payload?: T;
     loading: boolean;
 }

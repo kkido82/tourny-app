@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import * as login from './modules/login';
 import * as global from './modules/global';
 import { combineReducers } from 'redux';
+import { ResolverModule } from '../utils/resolver';
 
 const initState: IAppState = {
     global: global.initState,
@@ -11,13 +12,18 @@ const initState: IAppState = {
 };
 
 const rootReducer = combineReducers<IAppState>({
-    global: global.reducer,
-    login: login.reducer
+    global: global.reducers,
+    login: login.reducers
 });
+
+const middlewares = [
+    ...login.middlewares
+]
 
 @NgModule({
     imports: [
-        NgReduxModule
+        NgReduxModule,
+        ResolverModule
     ]
 })
 export class StoreModule {
@@ -31,6 +37,6 @@ export class StoreModule {
         // events.
         ngRedux.configureStore(
             rootReducer,
-            initState, null, enhancers);
+            initState, middlewares, enhancers);
     }
 }

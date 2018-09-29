@@ -32,28 +32,30 @@
 <aw-wizard navBarDirection="right-to-left">
   <aw-wizard-step stepTitle="פרטי התחברות" [canExit]="step1Complete()">
     <div class="step-content-wrapper">
-      <form class="signup-form" [formGroup]="signupForm">
+      <form class="signup-form" [formGroup]="signupDataForm">
         <div class="container">
           <h1>פרטי התחברות</h1>
           <p>חובה למלא את כל הפרטים כדי לעבור לשלב הבא</p>
           <hr>
 
           <label for="uname"><b>שם משתמש</b></label>
-          <input type="text" formControlName="username" placeholder="בחר שם משתמש" name="uname" [class.input-error]="signupForm.get('username').invalid && signupForm.get('username').touched" />
-          <div *ngIf="signupForm.get('username').invalid && signupForm.get('username').touched" class="input-error-text">
+          <input type="text" [(ngModel)]="newUser.username" formControlName="username" placeholder="בחר שם משתמש" name="uname"
+            [class.input-error]="signupDataForm.get('username').invalid && signupDataForm.get('username').touched" />
+          <div *ngIf="signupDataForm.get('username').invalid && signupDataForm.get('username').touched" class="input-error-text">
             חובה לבחור שם משתמש
           </div>
           <label for="psw"><b>סיסמא</b></label>
-          <input type="password" formControlName="password" placeholder="בחר סיסמא" name="psw" [class.input-error]="signupForm.get('password').invalid && signupForm.get('password').touched" />
-          <div *ngIf="signupForm.get('password').invalid && signupForm.get('password').touched" class="input-error-text">
+          <input type="password" [(ngModel)]="newUser.password" formControlName="password" placeholder="בחר סיסמא" name="psw"
+            [class.input-error]="signupDataForm.get('password').invalid && signupDataForm.get('password').touched" />
+          <div *ngIf="signupDataForm.get('password').invalid && signupDataForm.get('password').touched" class="input-error-text">
             חובה להזין סיסמא באורך 8 תווים לפחות
           </div>
 
 
           <label for="psw-repeat"><b>הקלד סיסמא שוב</b></label>
           <input type="password" formControlName="confirmPassword" placeholder="הקלד סיסמא שוב" name="psw-repeat"
-            [class.input-error]="signupForm.hasError('notSame') && signupForm.get('confirmPassword').touched" />
-          <div *ngIf="signupForm.hasError('notSame') && signupForm.get('confirmPassword').touched" class="input-error-text">
+            [class.input-error]="signupDataForm.hasError('notSame') && signupDataForm.get('confirmPassword').touched" />
+          <div *ngIf="signupDataForm.hasError('notSame') && signupDataForm.get('confirmPassword').touched" class="input-error-text">
             סיסמא לא תואמת
           </div>
           <!-- <label>
@@ -70,34 +72,118 @@
       </form>
     </div>
     <div class="step-btns-container">
-      <button type="button" class="step-btn" (click)="step1Complete();" [disabled]="signupForm.invalid" awNextStep><i
-          class="fa fa-arrow-left"></i> הבא </button>
+      <button type="button" class="step-btn" (click)="step1Complete();" [disabled]="signupDataForm.invalid" awNextStep>
+        <i class="fa fa-arrow-left"></i> הבא </button>
     </div>
   </aw-wizard-step>
   <aw-wizard-step stepTitle="פרטים אישיים" awOptionalStep>
     <div class="step-content-wrapper">
-      <div class="container">
-        <h1>פרטים אישיים</h1>
-        <!-- <p>חובה למלא את כל הפרטים כדי לעבור לשלב הבא</p> -->
-        <hr>
-      </div>
+      <form class="signup-form" [formGroup]="personalDetailsForm">
+        <div class="container">
+          <h1>פרטים אישיים</h1>
+          <!-- <p>חובה למלא את כל הפרטים כדי לעבור לשלב הבא</p> -->
+          <hr>
+
+          <label for="fname"><b>שם פרטי</b></label>
+          <input type="text" [(ngModel)]="newUser.firstName" formControlName="firstName" placeholder="שם פרטי או כינוי"
+            name="fname" [class.input-error]="personalDetailsForm.get('firstName').invalid && personalDetailsForm.get('firstName').touched" />
+          <div *ngIf="personalDetailsForm.get('firstName').invalid && personalDetailsForm.get('firstName').touched"
+            class="input-error-text">
+            חובה להזין שם פרטי או כינוי
+          </div>
+
+          <label for="lname"><b>שם משפחה</b></label>
+          <input type="text" [(ngModel)]="newUser.lastName" formControlName="lastName" placeholder="שם משפחה" name="lname" />
+
+          <label for="email"><b>דוא"ל</b></label>
+          <input type="text" [(ngModel)]="newUser.email" formControlName="email" placeholder="אימייל" name="email"
+            [class.input-error]="personalDetailsForm.get('email').hasError('notEmail') && personalDetailsForm.get('email').touched" />
+          <div *ngIf="personalDetailsForm.get('email').hasError('notEmail') && personalDetailsForm.get('email').touched"
+            class="input-error-text">
+            נא להזין כתובת מייל תקינה
+          </div>
+
+          <label for="email"><b>יד משחקת</b></label><br>
+          <label class="radio-inline" for="rightHanded">
+            ימין<input type="radio" [(ngModel)]="newUser.rightHanded" formControlName="rightHanded" name="rightHanded"
+              value="true" checked>
+          </label>&nbsp;
+          <label class="radio-inline" for="rightHanded">
+            שמאל<input type="radio" [(ngModel)]="newUser.rightHanded" formControlName="rightHanded" name="rightHanded"
+              value="false">
+          </label>
+
+        </div>
+      </form>
     </div>
     <div class="step-btns-container">
       <button type="button" class="step-btn float-right" awPreviousStep>הקודם <i class="fa fa-arrow-right"></i></button>
-      <button type="button" class="step-btn" awNextStep><i class="fa fa-arrow-left"></i> הבא </button>
+      <button type="button" class="step-btn" (click)="step2Complete();" [disabled]="personalDetailsForm.invalid"
+        awNextStep><i class="fa fa-arrow-left"></i> הבא </button>
     </div>
   </aw-wizard-step>
   <aw-wizard-step stepTitle="אישור והרשמה">
     <div class="step-content-wrapper">
       <div class="container">
         <h1>אישור והרשמה</h1>
-        <p>נא לבדוק את נכונות הפרטים וללחוץ על כפתור הרשמה</p>
+        <p>נא לבדוק את נכונות הפרטים וללחוץ על כפתור ההרשמה</p>
         <hr>
+        <div class="details-summary">
+          <div class="col-sm-2">
+            <label><b>שם פרטי:</b></label>
+          </div>
+          <div class="col-sm-10">
+            {{newUser.firstName}}
+          </div>
+        </div>
+        <div class="details-summary">
+          <div class="col-sm-2">
+            <label><b>שם משפחה:</b></label>
+          </div>
+          <div class="col-sm-10">
+            {{newUser.lastName}}
+          </div>
+        </div>
+        <div class="details-summary">
+          <div class="col-sm-2">
+            <label><b>שם משתמש:</b></label>
+          </div>
+          <div class="col-sm-10">
+            {{newUser.username}}
+          </div>
+        </div>
+        <div class="details-summary psw-summary-container">
+          <div class="col-sm-2">
+            <label><b>סיסמא:</b></label>
+            <span (click)="togglePassword();" class="fa fa-fw fa-eye field-icon"></span>
+          </div>
+          <div class="col-sm-10">
+            <input type="password" class="psw-summary-input" name="psw" id="psw-summary" value="{{newUser.password}}"
+              #pswSummary>
+          </div>
+        </div>
+        <div class="details-summary">
+          <div class="col-sm-2">
+            <label><b>דוא"ל:</b></label>
+          </div>
+          <div class="col-sm-10">
+            {{newUser.email}}
+          </div>
+        </div>
+        <div class="details-summary">
+          <div class="col-sm-2">
+            <label><b>יד משחקת:</b></label>
+          </div>
+          <div class="col-sm-10">
+            {{newUser.rightHanded}}
+          </div>
+        </div>
       </div>
     </div>
     <div class="step-btns-container">
       <button type="button" class="step-btn float-right" awPreviousStep>הקודם <i class="fa fa-arrow-right"></i></button>
-      <button type="button" class="step-btn" (click)="register()" awNextStep><i class="fa fa-check" aria-hidden="true"></i> אישור 
+      <button type="button" class="step-btn" (click)="register()" awNextStep><i class="fa fa-check" aria-hidden="true"></i>
+        אישור
         והרשמה
       </button>
     </div>
@@ -109,9 +195,7 @@
         <p>נא לבדוק את נכונות הפרטים וללחוץ על כפתור הרשמה</p>
         <hr>
         <div class="container" style="display: inline-block; padding: 0;">
-          <div>
-            <a class="btn" [routerLink]="'forgotPassword'">לחצו כאן</a>
-          </div>
+          {{ message$ | async}}
           <div>
             <span class="psw">עדיין לא רשומים? <a [routerLink]="'signup'">לחצו כאן</a></span>
           </div>
