@@ -1,20 +1,19 @@
 import { User } from "../../../models/user.model";
 
-export interface IState {
+export interface State {
     // signUpData: ISignUpData;
     message: string;
-    count: number;
 }
 
-export interface ISignUpData {
+export interface SignUpData {
     newUser: User;
 }
-export interface ISignUpSuccess {
+export interface SignUpSuccess {
     success: boolean;
     message?: string;
 }
 
-export interface ILoginData {
+export interface LoginData {
     username: string;
     password: string;
 }

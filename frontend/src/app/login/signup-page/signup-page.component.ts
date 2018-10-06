@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, EmailValidator } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from '../../models/user.model';
 import comparePassword from "../../validators/compare-password.validator";
 import emailValidator from "../../validators/email.validator";
 import { NgRedux, select } from '@angular-redux/store';
-import { IAppState } from '../../store/models';
+import { AppState } from '../../store/models';
 import { signUp } from '../../store/modules/login/actions';
 
 @Component({
@@ -13,13 +13,15 @@ import { signUp } from '../../store/modules/login/actions';
   styleUrls: ['./signup-page.component.css']
 })
 export class SignupPageComponent implements OnInit {
+  text: string = 'חובה לבחור שם משתמש';
+  cssClass: string = 'input-error-text';
   @ViewChild('pswSummary') pswSummary: ElementRef<HTMLSpanElement>;
   signupDataForm: FormGroup;
   personalDetailsForm: FormGroup;
   newUser: User = new User();
   @select(['login', 'message']) readonly message$;
 
-  constructor(formBuilder: FormBuilder, private ngRedux: NgRedux<IAppState>) {
+  constructor(formBuilder: FormBuilder, private ngRedux: NgRedux<AppState>) {
     this.signupDataForm = formBuilder.group({
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(1)]],

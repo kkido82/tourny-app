@@ -8,6 +8,7 @@ import { LoginModule } from './login/login.module';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { MessageComponent } from './components/message/message.component';
 import { StoreModule } from './store';
+import { TextColorDirective } from './directives/text-color.directive';
 
 
 

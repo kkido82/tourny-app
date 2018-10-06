@@ -1,3 +1,3 @@
-export interface IState {
+export interface State {
     loading: boolean;
 }

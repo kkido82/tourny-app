@@ -41,8 +41,8 @@
           <label for="uname"><b>שם משתמש</b></label>
           <input type="text" [(ngModel)]="newUser.username" formControlName="username" placeholder="בחר שם משתמש" name="uname"
             [class.input-error]="signupDataForm.get('username').invalid && signupDataForm.get('username').touched" />
-          <div *ngIf="signupDataForm.get('username').invalid && signupDataForm.get('username').touched" class="input-error-text">
-            חובה לבחור שם משתמש
+          <div appTextColor *ngIf="signupDataForm.get('username').invalid && signupDataForm.get('username').touched" 
+          [cssClass]="cssClass" [text]="text">
           </div>
           <label for="psw"><b>סיסמא</b></label>
           <input type="password" [(ngModel)]="newUser.password" formControlName="password" placeholder="בחר סיסמא" name="psw"
@@ -76,7 +76,7 @@
         <i class="fa fa-arrow-left"></i> הבא </button>
     </div>
   </aw-wizard-step>
-  <aw-wizard-step stepTitle="פרטים אישיים" awOptionalStep>
+  <aw-wizard-step stepTitle="פרטים אישיים">
     <div class="step-content-wrapper">
       <form class="signup-form" [formGroup]="personalDetailsForm">
         <div class="container">
@@ -86,7 +86,7 @@
 
           <label for="fname"><b>שם פרטי</b></label>
           <input type="text" [(ngModel)]="newUser.firstName" formControlName="firstName" placeholder="שם פרטי או כינוי"
-            name="fname" [class.input-error]="personalDetailsForm.get('firstName').invalid && personalDetailsForm.get('firstName').touched" />
+            name="fname" [class.input-error]="personalDetailsForm.get('firstName').invalid && personalDetailsForm.get('firstName').touched" required/>
           <div *ngIf="personalDetailsForm.get('firstName').invalid && personalDetailsForm.get('firstName').touched"
             class="input-error-text">
             חובה להזין שם פרטי או כינוי
@@ -104,15 +104,22 @@
           </div>
 
           <label for="email"><b>יד משחקת</b></label><br>
-          <label class="radio-inline" for="rightHanded">
-            ימין<input type="radio" [(ngModel)]="newUser.rightHanded" formControlName="rightHanded" name="rightHanded"
-              value="true" checked>
-          </label>&nbsp;
-          <label class="radio-inline" for="rightHanded">
-            שמאל<input type="radio" [(ngModel)]="newUser.rightHanded" formControlName="rightHanded" name="rightHanded"
-              value="false">
-          </label>
-
+          <div class="radio-hand-container">
+            <div class="radio-hand-label">
+              <input type="radio" class="radio-hand" [(ngModel)]="newUser.rightHanded" formControlName="rightHanded"
+                name="rightHanded" value="ימין" checked="checked">
+              <label for="rightHanded">
+                ימין
+              </label>
+            </div>
+            <div class="radio-hand-label">
+              <input type="radio" class="radio-hand" [(ngModel)]="newUser.rightHanded" formControlName="rightHanded"
+                name="rightHanded" value="שמאל">
+              <label for="rightHanded">
+                שמאל
+              </label>
+            </div>
+          </div>
         </div>
       </form>
     </div>
@@ -128,6 +135,7 @@
         <h1>אישור והרשמה</h1>
         <p>נא לבדוק את נכונות הפרטים וללחוץ על כפתור ההרשמה</p>
         <hr>
+        <label class="mb-20 confirm-step-title"><strong>פרטים אישיים:</strong></label>
         <div class="details-summary">
           <div class="col-sm-2">
             <label><b>שם פרטי:</b></label>
@@ -146,6 +154,23 @@
         </div>
         <div class="details-summary">
           <div class="col-sm-2">
+            <label><b>דוא"ל:</b></label>
+          </div>
+          <div class="col-sm-10">
+            {{newUser.email}}
+          </div>
+        </div>
+        <div class="details-summary">
+          <div class="col-sm-2">
+            <label><b>יד משחקת:</b></label>
+          </div>
+          <div class="col-sm-10">
+            {{newUser.rightHanded}}
+          </div>
+        </div>
+        <label class="mb-20 mt-30 confirm-step-title"><strong>פרטי התחברות:</strong></label>
+        <div class="details-summary">
+          <div class="col-sm-2">
             <label><b>שם משתמש:</b></label>
           </div>
           <div class="col-sm-10">
@@ -162,22 +187,7 @@
               #pswSummary>
           </div>
         </div>
-        <div class="details-summary">
-          <div class="col-sm-2">
-            <label><b>דוא"ל:</b></label>
-          </div>
-          <div class="col-sm-10">
-            {{newUser.email}}
-          </div>
-        </div>
-        <div class="details-summary">
-          <div class="col-sm-2">
-            <label><b>יד משחקת:</b></label>
-          </div>
-          <div class="col-sm-10">
-            {{newUser.rightHanded}}
-          </div>
-        </div>
+
       </div>
     </div>
     <div class="step-btns-container">

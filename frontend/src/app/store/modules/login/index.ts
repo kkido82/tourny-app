@@ -4,22 +4,19 @@ import { UserService } from "../../../services/user.service";
 import { resolve } from "../../../utils/resolver";
 import { Action } from "../../models";
 
-export const initState: models.IState = {
+export const initState: models.State = {
     // signUpData: {
     //     newUser: {
     //         userName: '',
     //         password: ''
     //     }
     // },
-    message: '',
-    count: 0
+    message: ''
 }
 
-export const reducers = (lastState: models.IState = initState, action: Action<any>): models.IState => {
+export const reducers = (lastState: models.State = initState, action: Action<any>): models.State => {
     debugger;
     switch (action.type) {
-        case types.INCREMENT: return { ...lastState, count: lastState.count + action.payload.amount };
-        case types.DECREMENT: return { ...lastState, count: lastState.count - action.payload.amount };
         // case types.SIGN_UP_SUBMIT: return {...lastState, signUpData: action.payload };
         case types.SIGN_UP_SUCCESS: return { ...lastState, message: action.payload.message };
     }
@@ -31,22 +28,18 @@ export const reducers = (lastState: models.IState = initState, action: Action<an
 //Middlewares
 const submitSignUp = store => next => action => {
     debugger;
-    switch (action.type) {
-        case types.SIGN_UP_SUBMIT:
-            let { newUser } = action.payload;
-            resolve(UserService)
-                .submitSignUp(newUser)
-                .then(
-                    signUpResponse => {
-                        if (signUpResponse.success) {
-                            return store.dispatch(signUpSuccess(signUpResponse));
-                        }
+    if (action.type === types.SIGN_UP_SUBMIT) {
+        let { newUser } = action.payload;
+        resolve(UserService)
+            .submitSignUp(newUser)
+            .then(
+                signUpResponse => {
+                    if (signUpResponse.success) {
+                        return store.dispatch(signUpSuccess(signUpResponse));
                     }
-                )
-                .catch(err => console.log(err))
-            break;
-        default:
-            break;
+                }
+            )
+            .catch(err => console.log(err))
     }
 
     return next(action);

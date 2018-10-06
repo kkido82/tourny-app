@@ -1,17 +1,17 @@
 import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
-import { IAppState } from './models';
+import { AppState } from './models';
 import { NgModule } from '@angular/core';
 import * as login from './modules/login';
 import * as global from './modules/global';
 import { combineReducers } from 'redux';
 import { ResolverModule } from '../utils/resolver';
 
-const initState: IAppState = {
+const initState: AppState = {
     global: global.initState,
     login: login.initState
 };
 
-const rootReducer = combineReducers<IAppState>({
+const rootReducer = combineReducers<AppState>({
     global: global.reducers,
     login: login.reducers
 });
@@ -27,7 +27,7 @@ const middlewares = [
     ]
 })
 export class StoreModule {
-    constructor(ngRedux: NgRedux<IAppState>, devTools: DevToolsExtension) {
+    constructor(ngRedux: NgRedux<AppState>, devTools: DevToolsExtension) {
         let enhancers = [];
         if (devTools.isEnabled()) {
             enhancers = [...enhancers, devTools.enhancer()];

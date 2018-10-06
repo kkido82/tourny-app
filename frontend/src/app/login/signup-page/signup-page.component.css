@@ -89,4 +89,25 @@ button {
 
 .psw-summary-input {
     border: none;
+    height: 30px;
+}
+
+.confirm-step-title {
+    font-size: 2em;
+}
+
+.radio-hand-container {
+    display: block;
+}
+
+.radio-hand-label {
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+}
+
+.radio-hand {
+    height: 25px;
+    width: 25px;
+    margin-left: 10px;
 }
